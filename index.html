@@ -1341,9 +1341,10 @@ class ScrollEngine {
     const h1 = document.querySelector('.hero-h1[data-split]');
     if (!h1) return;
     const raw = h1.innerHTML;
-    const parts = raw.split(/(<em>.*?<\/em>|\s+)/g).filter(p => p && !/^\s+$/.test(p));
+    const parts = raw.split(/(<em>.*?<\/em>|<br\s*\/?>|\s+)/g).filter(p => p && !/^\s+$/.test(p));
     h1.innerHTML = parts.map(part => {
       if (part.startsWith('<em>')) return `<span class="word"><em><span>${part.replace(/<\/?em>/g,'')}</span></em></span>`;
+      if (/^<br/i.test(part)) return part;
       return `<span class="word"><span>${part}</span></span>`;
     }).join(' ');
     requestAnimationFrame(() => {
