@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UNISUAM — Centro Universitário Augusto Motta. Mais de 100 cursos de graduação, pós e stricto sensu no coração da Zona Oeste do Rio de Janeiro.">
+<title>UNISUAM — Sua jornada começa aqui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,600;0,700;1,400&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ───────────────────────────────────── */
+:root{--o:#FF4D00;--o2:#FF6B2B;--o3:#CC3D00;--og:rgba(255,77,0,.12);--og2:rgba(255,77,0,.06);--bg:#F8F6F2;--bg2:#EFEDE8;--card:#FFFFFF;--surf:#E8E6E1;--surf2:#DDD9D2;--t1:#0C0C0B;--t2:#5A564F;--t3:#9C9891;--brd:rgba(0,0,0,.07);--brd2:rgba(0,0,0,.13);--sh:0 2px 20px rgba(0,0,0,.07);--sh2:0 8px 48px rgba(0,0,0,.11);--sh3:0 24px 80px rgba(0,0,0,.15);--fd:'Familjen Grotesk',sans-serif;--fb:'Epilogue',sans-serif;--r:14px;--rs:8px;--rp:999px;--ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+[data-theme="dark"]{--bg:#0E0E0D;--bg2:#141412;--card:#1C1B19;--surf:#252420;--surf2:#2E2D29;--t1:#F2EFE9;--t2:#908C84;--t3:#5A564F;--brd:rgba(255,255,255,.06);--brd2:rgba(255,255,255,.11);--sh:0 2px 20px rgba(0,0,0,.35);--sh2:0 8px 48px rgba(0,0,0,.55);--sh3:0 24px 80px rgba(0,0,0,.7)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .35s var(--ease),color .35s var(--ease)}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}button{cursor:pointer;border:none;background:none;font-family:inherit}
+/* scroll bar */
+#scroll-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--o);transform-origin:left;transform:scaleX(0);z-index:9999;transition:transform .1s linear}
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:500;height:64px;display:flex;align-items:center;padding:0 20px;gap:10px;background:rgba(10,10,9,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:background .4s var(--ease),backdrop-filter .4s,border-color .4s,height .3s}
+[data-theme="dark"] .nav,[data-theme="light"] .nav{background:rgba(10,10,9,0)}
+.nav.scrolled{background:rgba(10,10,9,.92);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom-color:rgba(255,255,255,.07);height:60px}
+[data-theme="dark"] .nav.scrolled,[data-theme="light"] .nav.scrolled{background:rgba(10,10,9,.92)}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;margin-right:auto;position:relative;z-index:1}
+.nav-logo img{height:30px;width:auto;display:block;object-fit:contain;transition:opacity .2s}
+.nav-logo img:hover{opacity:.85}
+.nav-links{display:none;gap:2px;align-items:center}
+@media(min-width:960px){.nav-links{display:flex}.nav{padding:0 48px;height:72px}.nav.scrolled{height:64px}.nav-logo img{height:34px}}
+.nl{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);padding:8px 14px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.nl:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nl-drop{position:relative}
+.nl-drop:hover .nl-dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.nl-dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-8px);background:var(--card);border:1px solid var(--brd2);border-radius:14px;padding:8px;min-width:180px;box-shadow:var(--sh2);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:100}
+.nl-dropdown a{display:block;font-size:13px;color:var(--t2);padding:8px 12px;border-radius:8px;transition:all .15s}
+.nl-dropdown a:hover{color:var(--t1);background:var(--surf)}
+.nav-end{display:flex;align-items:center;gap:8px;margin-left:auto}
+@media(min-width:960px){.nav-end{margin-left:28px}}
+.t-pill{width:42px;height:23px;border-radius:var(--rp);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);position:relative;cursor:pointer;flex-shrink:0;transition:background .3s}
+.t-pill::after{content:'';position:absolute;top:3px;left:3px;width:15px;height:15px;background:var(--o);border-radius:50%;transition:transform .3s var(--ease)}
+[data-theme="dark"] .t-pill::after{transform:translateX(19px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--fb);font-weight:600;font-size:13px;border-radius:var(--rp);transition:all .22s var(--ease);cursor:pointer;white-space:nowrap;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .2s}
+.btn:hover::after{background:rgba(255,255,255,.08)}
+.btn-ghost{padding:9px 18px;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22);background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:#fff}
+.btn-fill{padding:9px 20px;background:var(--o);color:#fff;border:1px solid transparent}
+.btn-fill:hover{background:var(--o2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,77,0,.35)}
+.ham{display:flex;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;padding:5px;border-radius:9px;cursor:pointer;transition:background .2s}
+.ham:hover{background:rgba(255,255,255,.1)}
+.ham span{display:block;height:2px;border-radius:1px;background:#fff;transition:all .3s var(--ease);transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(min-width:960px){.ham{display:none}}
+.drawer{position:fixed;inset:64px 0 0;background:var(--bg);z-index:450;padding:16px 20px 32px;display:flex;flex-direction:column;gap:2px;transform:translateX(105%);transition:transform .4s var(--ease);overflow-y:auto;border-top:1px solid var(--brd)}
+.drawer.open{transform:none}
+@media(min-width:960px){.drawer{display:none!important}}
+.drawer-link{font-size:16px;font-weight:600;color:var(--t2);padding:14px 16px;border-radius:12px;border-bottom:1px solid var(--brd);transition:all .2s;display:flex;align-items:center;justify-content:space-between}
+.drawer-link::after{content:'→';font-size:14px;color:var(--t3)}
+.drawer-link:hover{background:var(--surf);color:var(--t1);border-color:transparent}
+.drawer-actions{display:flex;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--brd)}
+.drawer-actions .btn{flex:1;padding:14px;font-size:14px}
+/* HERO */
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:110px 20px 80px;overflow:hidden}
+.hero-bg-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);opacity:.3}
+.orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(255,77,0,.4) 0%,transparent 70%);top:-200px;right:-200px;animation:orb-drift 12s ease-in-out infinite}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(255,77,0,.2) 0%,transparent 70%);bottom:-100px;left:-100px;animation:orb-drift 16s ease-in-out infinite reverse}
+@keyframes orb-drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+@media(min-width:960px){.hero{display:grid;grid-template-columns:55% 45%;align-items:center;gap:0;padding:120px 48px 80px;max-width:1320px;margin:0 auto;min-height:100vh}}
+.hero-left{position:relative;z-index:1;max-width:640px}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);background:var(--og);border:1px solid rgba(255,77,0,.2);padding:6px 14px;border-radius:var(--rp);margin-bottom:28px;opacity:0;transform:translateY(20px);animation:slide-up .6s var(--ease) .2s forwards}
+.hero-chip i{width:7px;height:7px;border-radius:50%;background:var(--o);animation:blink 2.2s ease-in-out infinite;flex-shrink:0;font-style:normal}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes slide-up{to{opacity:1;transform:none}}
+.hero-h1{font-family:var(--fd);font-size:clamp(52px,10vw,96px);font-weight:700;line-height:.95;letter-spacing:-3px;color:var(--t1);margin-bottom:24px}
+.hero-h1 .word{overflow:hidden;display:inline-block;margin-right:.2em}
+.hero-h1 .word span{display:inline-block;transform:translateY(110%);transition:transform .7s var(--ease)}
+.hero-h1.revealed .word span{transform:none}
+.hero-h1 em{font-style:italic;color:var(--o)}
+.hero-p{font-size:clamp(15px,2vw,17.5px);font-weight:300;color:var(--t2);line-height:1.75;max-width:460px;margin-bottom:38px;opacity:0;animation:slide-up .6s var(--ease) .8s forwards}
+.hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:56px;opacity:0;animation:slide-up .6s var(--ease) 1s forwards}
+.hero-btns .btn{font-size:14.5px;padding:14px 30px}
+.hero-data{display:flex;flex-wrap:wrap;gap:36px;padding-top:40px;border-top:1px solid var(--brd);opacity:0;animation:slide-up .6s var(--ease) 1.2s forwards}
+.hd-num{font-family:var(--fd);font-size:36px;font-weight:700;line-height:1;color:var(--t1);margin-bottom:4px;display:flex;align-items:baseline;gap:2px}
+.hd-num sup{color:var(--o);font-size:.55em;font-weight:700}
+.hd-lbl{font-size:12px;color:var(--t3)}
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;padding-top:60px;min-height:480px}
+@media(min-width:960px){.hero-right{padding-top:0;min-height:0}}
+.hero-visual-wrap{position:relative;width:min(340px,90vw);opacity:0;animation:slide-up .8s var(--ease) .6s forwards}
+.hv-card{background:var(--card);border:1px solid var(--brd);border-radius:24px;box-shadow:var(--sh3);overflow:hidden;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hvc-top{height:160px;background:linear-gradient(145deg,#111110 0%,#2a2824 100%);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px}
+.hvc-top::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,77,0,.3) 0%,transparent 65%)}
+.hvc-mono{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,var(--o) 0,var(--o) 1px,transparent 1px,transparent 28px),repeating-linear-gradient(90deg,var(--o) 0,var(--o) 1px,transparent 1px,transparent 28px)}
+.hvc-badge{position:relative;z-index:1;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(255,77,0,.4);backdrop-filter:blur(8px);border:1px solid rgba(255,77,0,.5);padding:4px 12px;border-radius:var(--rp)}
+.hvc-body{padding:20px 22px}
+.hvc-name{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.hvc-meta{display:flex;gap:14px;font-size:12.5px;color:var(--t3);margin-bottom:18px}
+.hvc-foot{display:flex;align-items:center;justify-content:space-between;padding:15px 22px;border-top:1px solid var(--brd)}
+.hvc-price small{display:block;font-size:10px;color:var(--t3);margin-bottom:2px}
+.hvc-price strong{font-family:var(--fd);font-size:24px;font-weight:700;color:var(--t1)}
+.hvc-price span{font-size:11.5px;color:var(--t3)}
+.hvc-avail{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#22c55e}
+.hvc-avail::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0}
+.fchip{position:absolute;background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:11px 15px;box-shadow:var(--sh2);display:flex;align-items:center;gap:10px}
+.fchip-1{top:-28px;right:-24px;animation:drift1 9s ease-in-out infinite}
+.fchip-2{bottom:44px;left:-32px;animation:drift2 11s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(-1deg)}}
+@keyframes drift2{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-6px) rotate(1deg)}}
+.fchip-icon{font-size:22px;flex-shrink:0}
+.fchip-text{font-size:12.5px;font-weight:600;color:var(--t1);white-space:nowrap}
+.fchip-sub{font-size:10px;color:var(--t3);margin-top:1px}
+.hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fade-in 1s var(--ease) 1.8s forwards}
+@keyframes fade-in{to{opacity:.7}}
+.scroll-wheel{width:26px;height:42px;border:2px solid var(--brd2);border-radius:var(--rp);position:relative}
+.scroll-wheel::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:4px;height:8px;background:var(--o);border-radius:var(--rp);animation:wheel 2s ease-in-out infinite}
+@keyframes wheel{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(16px)}}
+.hero-scroll-hint span{font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+/* TAPE */
+.tape{overflow:hidden;background:var(--o);padding:15px 0;white-space:nowrap}
+.tape-track{display:inline-flex;animation:tape 24s linear infinite}
+.tape-item{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);padding:0 20px;display:inline-block}
+.tape-dot{color:rgba(255,255,255,.3);padding:0 4px;display:inline-block}
+@keyframes tape{to{transform:translateX(-50%)}}
+/* METRICS */
+.metrics{background:var(--t1);padding:56px 20px}
+@media(min-width:960px){.metrics{padding:72px 48px}}
+.metrics-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+@media(min-width:640px){.metrics-inner{grid-template-columns:repeat(4,1fr)}}
+.metric{text-align:center;position:relative}
+.metric::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.1)}
+.metric:last-child::after{display:none}
+.metric-num{font-family:var(--fd);font-size:clamp(40px,6vw,64px);font-weight:700;line-height:1;color:#fff;margin-bottom:8px;display:flex;align-items:baseline;justify-content:center;gap:4px}
+.metric-num sup{color:var(--o);font-size:.5em;font-weight:700}
+.metric-lbl{font-size:12px;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.04em}
+/* STICKY FEATURES */
+.features-wrap{position:relative}
+.fs-track{height:500vh;position:relative}
+.fs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:stretch}
+.fs-left{position:relative;width:50%;display:flex;flex-direction:column;justify-content:center;padding:60px 48px;background:var(--bg);z-index:2}
+@media(min-width:1200px){.fs-left{padding:80px 80px 80px 96px}}
+.fs-eyebrow{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--o);margin-bottom:48px}
+.fs-item{position:absolute;opacity:0;transform:translateY(40px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none;padding:0 48px 0 0}
+.fs-item.active{opacity:1;transform:none;position:relative;pointer-events:all}
+.fs-item-num{font-family:var(--fd);font-size:80px;font-weight:700;color:var(--og);line-height:1;margin-bottom:-20px;letter-spacing:-3px}
+.fs-item h2{font-family:var(--fd);font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-1.2px;line-height:1.08;color:var(--t1);margin-bottom:18px}
+.fs-item p{font-size:15.5px;color:var(--t2);line-height:1.75;max-width:420px;margin-bottom:28px}
+.fs-item ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fs-item ul li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t2)}
+.fs-item ul li::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;background:var(--og) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23FF4D00'%3E%3Cpath d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'/%3E%3C/svg%3E") center/12px no-repeat}
+.fs-dots{display:flex;gap:8px;margin-top:40px}
+.fs-dot{width:6px;height:6px;border-radius:50%;background:var(--surf2);transition:all .3s;cursor:pointer}
+.fs-dot.on{width:24px;border-radius:3px;background:var(--o)}
+.fs-right{width:50%;position:relative;overflow:hidden}
+.fs-visual{position:absolute;inset:0;opacity:0;transition:opacity .6s var(--ease);display:flex;align-items:center;justify-content:center}
+.fs-visual.active{opacity:1}
+.fs-visual-inner{width:100%;height:100%;position:relative;overflow:hidden}
+.fsv-1{background:linear-gradient(160deg,#0f1a2e 0%,#1a2e50 100%)}
+.fsv-2{background:linear-gradient(160deg,#0f1f0f 0%,#1a3020 100%)}
+.fsv-3{background:linear-gradient(160deg,#1a1a0f 0%,#2e2c10 100%)}
+.fsv-4{background:linear-gradient(160deg,#1f0f1f 0%,#2e1030 100%)}
+.fsv-icon{font-size:140px;opacity:.08;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.fsv-cards{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;padding:40px;width:100%;max-width:380px;margin:0 auto}
+.fsv-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px);display:flex;align-items:center;gap:14px}
+.fsv-card-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,77,0,.2);border:1px solid rgba(255,77,0,.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.fsv-card-title{font-family:var(--fd);font-size:14px;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:3px}
+.fsv-card-sub{font-size:11.5px;color:rgba(255,255,255,.45)}
+@media(max-width:767px){.fs-track{height:auto}.fs-sticky{position:relative;height:auto;flex-direction:column}.fs-left{width:100%;padding:60px 20px 40px}.fs-right{width:100%;height:320px}.fs-item{position:static!important;opacity:1!important;transform:none!important;display:none}.fs-item.active{display:block}.fs-dots{justify-content:flex-start}}
+/* SHARED */
+.section-inner{max-width:1320px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--o);margin-bottom:12px;display:block}
+.sec-h2{font-family:var(--fd);font-size:clamp(30px,4.5vw,52px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;color:var(--t1);margin-bottom:40px}
+/* CRITIQUE */
+.critique{padding:80px 20px;background:var(--bg2)}
+@media(min-width:960px){.critique{padding:104px 48px}}
+.crit-inner{max-width:1320px;margin:0 auto}
+.crit-grid{display:grid;gap:16px}
+@media(min-width:640px){.crit-grid{grid-template-columns:1fr 1fr}}
+.crit-card{background:var(--card);border-radius:20px;border:1px solid var(--brd);overflow:hidden}
+.crit-head{padding:18px 22px;border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
+.crit-head h3{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1)}
+.ctag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 11px;border-radius:var(--rp)}
+.ctag-bad{background:rgba(239,68,68,.1);color:#ef4444}
+.ctag-good{background:rgba(34,197,94,.1);color:#22c55e}
+.crit-items{list-style:none;padding:6px 0}
+.ci{display:flex;align-items:flex-start;gap:12px;padding:12px 22px;font-size:13.5px;color:var(--t2);line-height:1.55;border-bottom:1px solid var(--brd);transition:background .15s}
+.ci:last-child{border-bottom:none}
+.ci:hover{background:var(--bg2)}
+.ci-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px}
+.ci-icon.bad{background:rgba(239,68,68,.1);color:#ef4444}
+.ci-icon.good{background:rgba(34,197,94,.1);color:#22c55e}
+/* COURSES */
+.courses{padding:80px 20px}
+@media(min-width:960px){.courses{padding:104px 48px}}
+.courses-top{display:flex;flex-direction:column;gap:20px;margin-bottom:36px}
+@media(min-width:640px){.courses-top{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.pill{font-size:13px;font-weight:600;padding:8px 18px;border-radius:var(--rp);border:1px solid var(--brd2);color:var(--t2);background:transparent;cursor:pointer;transition:all .2s}
+.pill:hover,.pill.on{background:var(--o);color:#fff;border-color:var(--o)}
+@media(max-width:639px){.c-scroll-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:0 20px 16px;scrollbar-width:none}.c-scroll-wrap::-webkit-scrollbar{display:none}.c-grid{display:flex;gap:14px;width:max-content}.c-card{width:270px;scroll-snap-align:start}}
+@media(min-width:640px){.c-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}}
+.c-card{background:var(--card);border:1px solid var(--brd);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s;position:relative}
+.c-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--sh3);border-color:rgba(255,77,0,.25)}
+.c-card.hidden{display:none}
+.c-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+.ct-1{background:linear-gradient(135deg,#0f1117 0%,#1e2030 100%)}
+.ct-2{background:linear-gradient(135deg,#0f1a0f 0%,#1a2e1a 100%)}
+.ct-3{background:linear-gradient(135deg,#1a0f0f 0%,#2e1a1a 100%)}
+.ct-4{background:linear-gradient(135deg,#0f0f1a 0%,#1a1a2e 100%)}
+.ct-5{background:linear-gradient(135deg,#1a0f1a 0%,#2e1a2e 100%)}
+.ct-6{background:linear-gradient(135deg,#1a160f 0%,#2e240f 100%)}
+.ct-7{background:linear-gradient(135deg,#101a1a 0%,#1a2e2e 100%)}
+.ct-8{background:linear-gradient(135deg,#1a101a 0%,#2e1a28 100%)}
+.c-thumb::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,77,0,.15) 0%,transparent 60%)}
+.c-modal-tag{position:absolute;bottom:12px;left:14px;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(0,0,0,.45);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);padding:3px 10px;border-radius:var(--rp);z-index:1}
+.c-mec{position:absolute;top:12px;right:14px;font-size:9.5px;font-weight:700;color:var(--o);background:rgba(255,77,0,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,77,0,.25);padding:3px 10px;border-radius:var(--rp);z-index:1}
+.c-body{padding:18px 20px 20px}
+.c-name{font-family:var(--fd);font-size:16.5px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.c-desc{font-size:12.5px;color:var(--t3);line-height:1.55;margin-bottom:16px;min-height:40px}
+.c-foot{display:flex;align-items:center;justify-content:space-between}
+.c-meta{display:flex;flex-direction:column;gap:2px}
+.c-dur{font-size:11.5px;color:var(--t3)}
+.c-price{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--t1)}
+.c-arrow{width:34px;height:34px;border-radius:50%;background:var(--og);color:var(--o);display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .22s;flex-shrink:0}
+.c-card:hover .c-arrow{background:var(--o);color:#fff;transform:scale(1.1)}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(12,12,11,.6);backdrop-filter:blur(8px);z-index:800;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+@media(min-width:640px){.modal-overlay{align-items:center;justify-content:center}}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--card);border-radius:28px 28px 0 0;width:100%;max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .45s var(--spring)}
+@media(min-width:640px){.modal-box{border-radius:28px;width:min(900px,95vw);max-height:88vh;transform:translateY(40px) scale(.97)}}
+.modal-overlay.open .modal-box{transform:none}
+.modal-handle{width:40px;height:5px;background:var(--surf2);border-radius:var(--rp);margin:12px auto 0}
+@media(min-width:640px){.modal-handle{display:none}}
+.modal-hero{height:180px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px 28px}
+@media(min-width:640px){.modal-hero{height:220px}}
+.modal-hero-emoji{font-size:80px;position:absolute;top:50%;right:32px;transform:translateY(-50%);opacity:.18}
+.modal-hero-badge{position:relative;z-index:1;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(255,77,0,.4);backdrop-filter:blur(8px);border:1px solid rgba(255,77,0,.5);padding:5px 14px;border-radius:var(--rp)}
+.modal-body{padding:24px 28px 36px}
+@media(min-width:640px){.modal-body{padding:32px 40px 48px}}
+.modal-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(6px);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s}
+.modal-close:hover{background:rgba(255,77,0,.5);transform:scale(1.1)}
+.modal-title{font-family:var(--fd);font-size:clamp(22px,4vw,32px);font-weight:700;letter-spacing:-.8px;color:var(--t1);margin-bottom:8px}
+.modal-meta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:24px}
+.modal-meta span{font-size:13px;color:var(--t2);display:flex;align-items:center;gap:5px}
+.modal-tabs{display:flex;gap:4px;border-bottom:1px solid var(--brd);margin-bottom:28px;overflow-x:auto;scrollbar-width:none}
+.modal-tabs::-webkit-scrollbar{display:none}
+.mtab{font-size:13px;font-weight:600;padding:10px 16px;color:var(--t3);border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:all .2s;margin-bottom:-1px}
+.mtab.on{color:var(--o);border-bottom-color:var(--o)}
+.mtab:hover{color:var(--t1)}
+.modal-panel{display:none}
+.modal-panel.on{display:block}
+.curriculum-grid{display:grid;gap:12px}
+@media(min-width:640px){.curriculum-grid{grid-template-columns:1fr 1fr}}
+.sem-block{background:var(--bg2);border-radius:14px;padding:16px 18px;border:1px solid var(--brd)}
+.sem-label{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--o);margin-bottom:10px}
+.sem-block ul{list-style:none}
+.sem-block li{font-size:12.5px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:7px}
+.sem-block li:last-child{border-bottom:none}
+.sem-block li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--o);flex-shrink:0}
+.career-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.career-tag{font-size:12.5px;font-weight:600;padding:7px 16px;border-radius:var(--rp);background:var(--og);color:var(--o);border:1px solid rgba(255,77,0,.2)}
+.scholarship-list{display:flex;flex-direction:column;gap:10px}
+.schol-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg2);border-radius:12px;border:1px solid var(--brd)}
+.schol-icon{font-size:22px}
+.schol-name{font-size:14px;font-weight:600;color:var(--t1)}
+.schol-desc{font-size:12px;color:var(--t3);margin-top:2px}
+.schol-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--rp);background:rgba(34,197,94,.1);color:#22c55e;white-space:nowrap}
+.modal-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:28px;border-top:1px solid var(--brd)}
+.modal-cta .btn{font-size:14px;padding:13px 28px}
+/* CAMPUS */
+.campus{padding:80px 20px;background:var(--bg2);overflow:hidden}
+@media(min-width:960px){.campus{padding:104px 48px}}
+.campus-inner{max-width:1320px;margin:0 auto}
+.campus-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+@media(min-width:640px){.campus-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.campus-grid{grid-template-columns:repeat(4,1fr);grid-template-rows:240px 240px}}
+.campus-item{border-radius:18px;overflow:hidden;position:relative;background:var(--surf);min-height:150px;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.campus-item:hover{transform:scale(1.02);box-shadow:var(--sh2)}
+@media(min-width:960px){.campus-item:nth-child(1){grid-column:span 2;grid-row:span 2}.campus-item{min-height:auto}}
+.campus-item-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:.15}
+.campus-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%)}
+.campus-item-label{position:absolute;bottom:14px;left:16px;font-family:var(--fd);font-size:13px;font-weight:700;color:rgba(255,255,255,.9)}
+.campus-item-sub{position:absolute;bottom:34px;left:16px;font-size:10.5px;color:rgba(255,255,255,.5)}
+.ci-bg-1{background:linear-gradient(145deg,#0e1a2e 0%,#1a2e50 100%)}
+.ci-bg-2{background:linear-gradient(145deg,#1a0e0e 0%,#3a1e1e 100%)}
+.ci-bg-3{background:linear-gradient(145deg,#0e1a0e 0%,#1e3a1e 100%)}
+.ci-bg-4{background:linear-gradient(145deg,#1a150e 0%,#2e2410 100%)}
+.ci-bg-5{background:linear-gradient(145deg,#0e0e1a 0%,#1e1e3a 100%)}
+.ci-bg-6{background:linear-gradient(145deg,#1a0e1a 0%,#2e1030 100%)}
+/* TESTIMONIALS */
+.testi{padding:80px 20px}
+@media(min-width:960px){.testi{padding:104px 48px}}
+.t-grid{display:grid;gap:14px;margin-top:48px}
+@media(min-width:640px){.t-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.t-grid{grid-template-columns:1fr 1fr 1fr}}
+.t-card{background:var(--card);border:1px solid var(--brd);border-radius:20px;padding:28px;position:relative;overflow:hidden;cursor:default;transition:transform .3s var(--ease),box-shadow .3s}
+.t-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.t-card::before{content:'\201C';font-family:var(--fd);font-size:120px;font-weight:700;color:var(--o);opacity:.06;position:absolute;top:-16px;right:10px;line-height:1;pointer-events:none}
+.t-stars{color:var(--o);font-size:12px;margin-bottom:12px;letter-spacing:2px}
+.t-quote{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px;font-weight:300}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-av{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--o),#cc2200);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.t-name{font-size:13.5px;font-weight:600;color:var(--t1)}
+.t-role{font-size:11.5px;color:var(--t3);margin-top:2px}
+/* BLOG PREVIEW */
+.blog-preview{padding:80px 20px;background:var(--bg2)}
+@media(min-width:960px){.blog-preview{padding:104px 48px}}
+.blog-grid{display:grid;gap:16px;margin-top:48px}
+@media(min-width:640px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.blog-grid{grid-template-columns:1fr 1fr 1fr}}
+.blog-card{background:var(--card);border:1px solid var(--brd);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .28s var(--ease),box-shadow .28s;display:flex;flex-direction:column}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.bc-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
+.bc-cat{position:absolute;bottom:12px;left:14px;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(255,77,0,.45);backdrop-filter:blur(6px);border:1px solid rgba(255,77,0,.4);padding:3px 10px;border-radius:var(--rp)}
+.bc-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.bc-title{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--t1);line-height:1.3;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bc-excerpt{font-size:13px;color:var(--t3);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1;margin-bottom:16px}
+.bc-foot{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--brd)}
+.bc-av{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--o),#cc2200);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+.bc-date{font-size:11.5px;color:var(--t3)}
+.bc-likes{margin-left:auto;font-size:11.5px;color:var(--t3);display:flex;align-items:center;gap:4px}
+/* CTA */
+.cta-wrap{padding:40px 20px 72px}
+@media(min-width:960px){.cta-wrap{padding:60px 48px 96px}}
+.cta-block{max-width:1320px;margin:0 auto;background:var(--o);border-radius:28px;padding:52px 32px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px}
+@media(min-width:640px){.cta-block{flex-direction:row;align-items:center;justify-content:space-between;padding:60px 64px;gap:48px}}
+.cta-block::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+.cta-block::after{content:'';position:absolute;left:-40px;bottom:-80px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.cta-txt{position:relative;z-index:1}
+.cta-txt h2{font-family:var(--fd);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-1.2px;color:#fff;margin-bottom:10px;line-height:1.1}
+.cta-txt p{font-size:14.5px;color:rgba(255,255,255,.72);font-weight:300}
+.cta-acts{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1;flex-shrink:0}
+.btn-wh{padding:14px 28px;font-size:14.5px;font-weight:700;background:#fff;color:var(--o);border-radius:var(--rp);cursor:pointer;border:none;font-family:var(--fb);transition:all .22s}
+.btn-wh:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.btn-owh{padding:14px 28px;font-size:14px;font-weight:600;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:var(--rp);cursor:pointer;font-family:var(--fb);transition:all .22s}
+.btn-owh:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.1)}
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--brd);padding:64px 20px 32px}
+@media(min-width:960px){footer{padding:72px 48px 36px}}
+.ft-inner{max-width:1320px;margin:0 auto}
+.ft-grid{display:grid;gap:40px;margin-bottom:48px}
+@media(min-width:640px){.ft-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.ft-grid{grid-template-columns:2.2fr 1fr 1fr 1fr}}
+.ft-brand-name{font-family:var(--fd);font-size:21px;font-weight:700;margin-bottom:12px}
+.ft-brand-name b{color:var(--o)}
+.ft-desc{font-size:13px;color:var(--t3);line-height:1.7;max-width:280px;margin-bottom:22px}
+.ft-soc{display:flex;gap:8px}
+.soc-btn{width:36px;height:36px;border-radius:10px;background:var(--surf);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--t2);cursor:pointer;transition:all .2s}
+.soc-btn:hover{background:var(--o);color:#fff;border-color:transparent;transform:translateY(-2px)}
+.ft-col h4{font-family:var(--fd);font-size:13.5px;font-weight:700;margin-bottom:16px;color:var(--t1)}
+.ft-col a{display:block;font-size:13px;color:var(--t3);margin-bottom:10px;transition:color .18s}
+.ft-col a:hover{color:var(--o)}
+.ft-bot{padding-top:28px;border-top:1px solid var(--brd);display:flex;flex-direction:column;gap:10px}
+@media(min-width:640px){.ft-bot{flex-direction:row;align-items:center;justify-content:space-between}}
+.ft-copy{font-size:11.5px;color:var(--t3)}
+.ft-legal{display:flex;gap:18px}
+.ft-legal a{font-size:11.5px;color:var(--t3);transition:color .18s}
+.ft-legal a:hover{color:var(--t1)}
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.on{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- SCROLL BAR -->
+<div id="scroll-bar" role="progressbar" aria-hidden="true"></div>
+
+<!-- ══ NAV ════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="unisuam-white-no-background.png" alt="UNISUAM">
+  </a>
+
+  <div class="nav-links">
+    <div class="nl-drop">
+      <a class="nl" href="#cursos">Cursos ▾</a>
+      <div class="nl-dropdown">
+        <a href="#cursos">Graduação Presencial</a>
+        <a href="#cursos">Graduação Digital (EaD)</a>
+        <a href="#cursos">Semipresencial</a>
+        <a href="blog.html">Pós-Graduação</a>
+        <a href="blog.html">Mestrado & Doutorado</a>
+      </div>
+    </div>
+    <a class="nl" href="#por-que">Por que a UNISUAM</a>
+    <a class="nl" href="#ingresso">Ingresso</a>
+    <a class="nl" href="blog.html">Blog</a>
+  </div>
+
+  <div class="nav-end">
+    <button class="t-pill" id="tp" aria-label="Alternar tema claro/escuro"></button>
+    <a href="dashboard.html" class="btn btn-ghost nb-aluno" style="display:none">Sou Aluno</a>
+    <a href="#ingresso" class="btn btn-fill">Inscreva-se</a>
+    <div class="ham" id="ham" aria-label="Menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer" role="dialog" aria-label="Menu de navegação">
+  <a class="drawer-link" href="#cursos">Cursos</a>
+  <a class="drawer-link" href="#por-que">Por que a UNISUAM</a>
+  <a class="drawer-link" href="#ingresso">Ingresso & Bolsas</a>
+  <a class="drawer-link" href="blog.html">Blog & Notícias</a>
+  <a class="drawer-link" href="dashboard.html">Área do Aluno</a>
+  <div class="drawer-actions">
+    <a href="dashboard.html" class="btn btn-ghost">Sou Aluno</a>
+    <a href="#ingresso" class="btn btn-fill">Inscreva-se</a>
+  </div>
+</div>
+
+<!-- ══ HERO ═══════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <!-- Orbs -->
+  <div class="hero-bg-orb orb-1" data-parallax="0.15" aria-hidden="true"></div>
+  <div class="hero-bg-orb orb-2" data-parallax="0.2" aria-hidden="true"></div>
+
+  <div class="hero-left">
+    <div class="hero-chip">
+      <i></i>Inscrições 2025.2 abertas
+    </div>
+
+    <h1 class="hero-h1" data-split>
+      O seu<br>futuro<br><em>começa<br>aqui.</em>
+    </h1>
+
+    <p class="hero-p">
+      Mais de 100 cursos de graduação, pós e stricto sensu. Presencial, digital e semipresencial — no coração da Zona Oeste do Rio.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#cursos" class="btn btn-fill">
+        <span>Explorar cursos</span>
+        <span>→</span>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=5521999999999" target="_blank" rel="noopener" class="btn btn-ghost">
+        💬 Falar com consultor
+      </a>
+    </div>
+
+    <div class="hero-data">
+      <div>
+        <div class="hd-num">
+          <span data-count="35" data-suffix="">0</span><sup>+</sup>
+        </div>
+        <div class="hd-lbl">anos de história</div>
+      </div>
+      <div>
+        <div class="hd-num">
+          <span data-count="100" data-suffix="k">0</span><sup>+</sup>
+        </div>
+        <div class="hd-lbl">alunos formados</div>
+      </div>
+      <div>
+        <div class="hd-num">
+          <span data-count="4" data-suffix="" data-decimals="1">0</span><sup>.5</sup>
+        </div>
+        <div class="hd-lbl">conceito MEC</div>
+      </div>
+      <div>
+        <div class="hd-num">
+          <span data-count="100" data-suffix="+">0</span>
+        </div>
+        <div class="hd-lbl">cursos disponíveis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero right visual -->
+  <div class="hero-right" aria-hidden="true">
+    <div class="hero-visual-wrap">
+      <div class="fchip fchip-1">
+        <span class="fchip-icon">🎓</span>
+        <div>
+          <div class="fchip-text">Conceito 5 MEC</div>
+          <div class="fchip-sub">Engenharia Elétrica</div>
+        </div>
+      </div>
+      <div class="fchip fchip-2">
+        <span class="fchip-icon">📍</span>
+        <div>
+          <div class="fchip-text">Zona Oeste, RJ</div>
+          <div class="fchip-sub">Fácil acesso — BRT, metrô, ônibus</div>
+        </div>
+      </div>
+      <div class="hv-card">
+        <div class="hvc-top">
+          <div class="hvc-mono"></div>
+          <span class="hvc-badge">Engenharia</span>
+        </div>
+        <div class="hvc-body">
+          <div class="hvc-name">Eng. de Computação</div>
+          <div class="hvc-meta">
+            <span>⏱ 8 semestres</span>
+            <span>📍 Presencial</span>
+          </div>
+          <div class="btn btn-fill" style="font-size:12px;padding:9px 16px;border-radius:10px">
+            Ver grade curricular →
+          </div>
+        </div>
+        <div class="hvc-foot">
+          <div class="hvc-price">
+            <small>a partir de</small>
+            <strong>R$ 890</strong><span>/mês</span>
+          </div>
+          <div class="hvc-avail">FIES disponível</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-wheel"></div>
+    <span>Role para explorar</span>
+  </div>
+</section>
+
+<!-- ══ TAPE ════════════════════════════════════════ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-item">Graduação</span><span class="tape-dot">·</span>
+    <span class="tape-item">Pós-Graduação</span><span class="tape-dot">·</span>
+    <span class="tape-item">Mestrado</span><span class="tape-dot">·</span>
+    <span class="tape-item">Doutorado</span><span class="tape-dot">·</span>
+    <span class="tape-item">EaD</span><span class="tape-dot">·</span>
+    <span class="tape-item">Semipresencial</span><span class="tape-dot">·</span>
+    <span class="tape-item">35 anos</span><span class="tape-dot">·</span>
+    <span class="tape-item">MEC 4.5</span><span class="tape-dot">·</span>
+    <span class="tape-item">Zona Oeste RJ</span><span class="tape-dot">·</span>
+    <span class="tape-item">FIES & ProUni</span><span class="tape-dot">·</span>
+    <span class="tape-item">100+ Cursos</span><span class="tape-dot">·</span>
+    <span class="tape-item">Graduação</span><span class="tape-dot">·</span>
+    <span class="tape-item">Pós-Graduação</span><span class="tape-dot">·</span>
+    <span class="tape-item">Mestrado</span><span class="tape-dot">·</span>
+    <span class="tape-item">Doutorado</span><span class="tape-dot">·</span>
+    <span class="tape-item">EaD</span><span class="tape-dot">·</span>
+    <span class="tape-item">Semipresencial</span><span class="tape-dot">·</span>
+    <span class="tape-item">35 anos</span><span class="tape-dot">·</span>
+    <span class="tape-item">MEC 4.5</span><span class="tape-dot">·</span>
+    <span class="tape-item">Zona Oeste RJ</span><span class="tape-dot">·</span>
+    <span class="tape-item">FIES & ProUni</span><span class="tape-dot">·</span>
+    <span class="tape-item">100+ Cursos</span><span class="tape-dot">·</span>
+  </div>
+</div>
+
+<!-- ══ METRICS ═════════════════════════════════════ -->
+<section class="metrics" id="numeros">
+  <div class="metrics-inner">
+    <div class="metric rv">
+      <div class="metric-num">
+        <span data-count="35" data-suffix="+">35+</span>
+      </div>
+      <div class="metric-lbl">Anos de excelência</div>
+    </div>
+    <div class="metric rv d1">
+      <div class="metric-num">
+        <span data-count="100" data-suffix="k+">100k+</span>
+      </div>
+      <div class="metric-lbl">Alunos formados</div>
+    </div>
+    <div class="metric rv d2">
+      <div class="metric-num">
+        <span data-count="800" data-suffix="+">800+</span>
+      </div>
+      <div class="metric-lbl">Professores especialistas</div>
+    </div>
+    <div class="metric rv d3">
+      <div class="metric-num">
+        <span data-count="4" data-suffix="" data-decimals="1">4.0</span>
+      </div>
+      <div class="metric-lbl">Conceito MEC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STICKY FEATURES (Apple-style) ══════════════ -->
+<section class="features-wrap" id="por-que">
+  <div class="fs-track">
+    <div class="fs-sticky">
+
+      <!-- LEFT: text content -->
+      <div class="fs-left">
+        <div class="fs-eyebrow">Por que a UNISUAM</div>
+
+        <div class="fs-item active">
+          <div class="fs-item-num">01</div>
+          <h2>Infraestrutura de ponta</h2>
+          <p>Laboratórios renovados, biblioteca com 80 mil títulos, salas imersivas e uma estrutura pensada para o aprendizado do século XXI.</p>
+          <ul>
+            <li>Laboratórios de IA & Machine Learning</li>
+            <li>Hospital escola CLESAM integrado</li>
+            <li>Estúdios de rádio e TV profissionais</li>
+            <li>Quadras, piscina e academia completa</li>
+          </ul>
+        </div>
+
+        <div class="fs-item">
+          <div class="fs-item-num">02</div>
+          <h2>Corpo docente de elite</h2>
+          <p>Mais de 800 professores, dos quais 70% têm mestrado ou doutorado. Profissionais que atuam no mercado e trazem a realidade para a sala de aula.</p>
+          <ul>
+            <li>70% com pós-graduação stricto sensu</li>
+            <li>Professores-pesquisadores com bolsas CNPq</li>
+            <li>Avaliação docente semestral pelos alunos</li>
+            <li>Programa de mentoria profissional</li>
+          </ul>
+        </div>
+
+        <div class="fs-item">
+          <div class="fs-item-num">03</div>
+          <h2>Certificação reconhecida</h2>
+          <p>Cursos com conceito MEC, amplamente reconhecidos pelo mercado nacional e com aceitação para especializações e programas internacionais.</p>
+          <ul>
+            <li>Conceito MEC 4.5 — excelência nacional</li>
+            <li>Reconhecimento pelo MEC em 100% dos cursos</li>
+            <li>Parceria com universidades portuguesas e americanas</li>
+            <li>Diplomas aceitos em processos seletivos públicos</li>
+          </ul>
+        </div>
+
+        <div class="fs-item">
+          <div class="fs-item-num">04</div>
+          <h2>Acesso & financiamento</h2>
+          <p>Localização privilegiada na Zona Oeste com acesso fácil por BRT, metrô e ônibus. E diversas formas de tornar sua graduação acessível.</p>
+          <ul>
+            <li>FIES e ProUni disponíveis em todos os cursos</li>
+            <li>Bolsas por mérito de até 50% de desconto</li>
+            <li>PraValer — parcelamento sem juros pelo app</li>
+            <li>Estágio remunerado obrigatório a partir do 5º sem.</li>
+          </ul>
+        </div>
+
+        <div class="fs-dots">
+          <div class="fs-dot on" data-step="0"></div>
+          <div class="fs-dot" data-step="1"></div>
+          <div class="fs-dot" data-step="2"></div>
+          <div class="fs-dot" data-step="3"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: visuals -->
+      <div class="fs-right">
+
+        <!-- Visual 1: Infrastructure -->
+        <div class="fs-visual active">
+          <div class="fs-visual-inner fsv-1">
+            <div class="fsv-icon">🏛️</div>
+            <div class="fsv-cards">
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🤖</div>
+                <div>
+                  <div class="fsv-card-title">Lab. Inteligência Artificial</div>
+                  <div class="fsv-card-sub">GPUs NVIDIA A100 · 60 workstations</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🏥</div>
+                <div>
+                  <div class="fsv-card-title">CLESAM — Hospital Escola</div>
+                  <div class="fsv-card-sub">8 especialidades · 120 leitos</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">📡</div>
+                <div>
+                  <div class="fsv-card-title">Estúdio TV & Rádio</div>
+                  <div class="fsv-card-sub">Transmissão ao vivo · Edição 4K</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">⚗️</div>
+                <div>
+                  <div class="fsv-card-title">Laboratórios de Ciências</div>
+                  <div class="fsv-card-sub">32 labs especializados no campus</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 2: Faculty -->
+        <div class="fs-visual">
+          <div class="fs-visual-inner fsv-2">
+            <div class="fsv-icon">👨‍🏫</div>
+            <div class="fsv-cards">
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🎓</div>
+                <div>
+                  <div class="fsv-card-title">800+ Professores</div>
+                  <div class="fsv-card-sub">70% com mestrado ou doutorado</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🔬</div>
+                <div>
+                  <div class="fsv-card-title">Pesquisadores CNPq</div>
+                  <div class="fsv-card-sub">40 bolsistas de produtividade</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">⭐</div>
+                <div>
+                  <div class="fsv-card-title">Avaliação Docente</div>
+                  <div class="fsv-card-sub">4.7 / 5.0 — média 2024</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🤝</div>
+                <div>
+                  <div class="fsv-card-title">Programa de Mentoria</div>
+                  <div class="fsv-card-sub">1 mentor por grupo de 10 alunos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 3: Certification -->
+        <div class="fs-visual">
+          <div class="fs-visual-inner fsv-3">
+            <div class="fsv-icon">🏅</div>
+            <div class="fsv-cards">
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🏅</div>
+                <div>
+                  <div class="fsv-card-title">MEC 4.5 — Excelência</div>
+                  <div class="fsv-card-sub">Reconhecido em todos os cursos</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🌍</div>
+                <div>
+                  <div class="fsv-card-title">Acordos Internacionais</div>
+                  <div class="fsv-card-sub">Portugal · EUA · Espanha · Chile</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">📋</div>
+                <div>
+                  <div class="fsv-card-title">Reconhecimento em Concursos</div>
+                  <div class="fsv-card-sub">Aceito em 100% dos órgãos públicos</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🔗</div>
+                <div>
+                  <div class="fsv-card-title">Rede de Alumni</div>
+                  <div class="fsv-card-sub">+100 mil ex-alunos conectados</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 4: Access -->
+        <div class="fs-visual">
+          <div class="fs-visual-inner fsv-4">
+            <div class="fsv-icon">🚇</div>
+            <div class="fsv-cards">
+              <div class="fsv-card">
+                <div class="fsv-card-icon">💳</div>
+                <div>
+                  <div class="fsv-card-title">FIES & ProUni</div>
+                  <div class="fsv-card-sub">Disponível em todos os cursos</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🎁</div>
+                <div>
+                  <div class="fsv-card-title">Bolsa por Mérito</div>
+                  <div class="fsv-card-sub">Até 50% para top ENEM</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">📱</div>
+                <div>
+                  <div class="fsv-card-title">PraValer App</div>
+                  <div class="fsv-card-sub">Parcelamento em até 12x sem juros</div>
+                </div>
+              </div>
+              <div class="fsv-card">
+                <div class="fsv-card-icon">🚇</div>
+                <div>
+                  <div class="fsv-card-title">Acesso Fácil</div>
+                  <div class="fsv-card-sub">BRT · Metrô · 30+ linhas de ônibus</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CRITIQUE ════════════════════════════════════ -->
+<div class="critique">
+  <div class="crit-inner section-inner">
+    <span class="eyebrow rv">Análise UX</span>
+    <h2 class="sec-h2 rv">O que foi<br>corrigido</h2>
+    <div class="crit-grid">
+      <div class="crit-card rv">
+        <div class="crit-head">
+          <h3>Site antigo</h3>
+          <span class="ctag ctag-bad">Problemas</span>
+        </div>
+        <ul class="crit-items">
+          <li class="ci"><span class="ci-icon bad">✕</span>Dezenas de links soltos no menu — paralisia de decisão</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Sem hierarquia visual — tudo compete pela atenção</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Pop-ups invasivos antes de qualquer contexto</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Sem animações — parece estático e abandonado</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Sem modo escuro — acessibilidade comprometida</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Design inconsistente — fontes e cores sem critério</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Área do aluno desconectada do site público</li>
+          <li class="ci"><span class="ci-icon bad">✕</span>Responsividade precária — nav quebra em mobile</li>
+        </ul>
+      </div>
+      <div class="crit-card rv d2">
+        <div class="crit-head">
+          <h3>Novo design</h3>
+          <span class="ctag ctag-good">Soluções</span>
+        </div>
+        <ul class="crit-items">
+          <li class="ci"><span class="ci-icon good">✓</span>Navegação em 4 grupos com drawer mobile dedicado</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Hierarquia tipográfica com Familjen Grotesk + Epilogue</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Promoções integradas ao fluxo — sem pop-ups</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Apple scroll effects, float cards, hover em tudo</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Dark mode por CSS tokens — alterna em 1 clique</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Design system coeso: tokens, radius, sombras, cores</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Dashboard do aluno e blog integrados ao site</li>
+          <li class="ci"><span class="ci-icon good">✓</span>Mobile-first — testado de 320px a 1440px+</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COURSES ══════════════════════════════════════ -->
+<section class="courses" id="cursos">
+  <div class="section-inner">
+    <div class="courses-top rv" data-pill-container>
+      <div>
+        <span class="eyebrow">Nossos cursos</span>
+        <h2 class="sec-h2" style="margin-bottom:0">Encontre<br>sua área</h2>
+        <div class="pills">
+          <button class="pill on" data-filter="all">Todos</button>
+          <button class="pill" data-filter="engenharia">Engenharia</button>
+          <button class="pill" data-filter="saude">Saúde</button>
+          <button class="pill" data-filter="negocios">Negócios</button>
+          <button class="pill" data-filter="tecnologia">Tecnologia</button>
+          <button class="pill" data-filter="direito">Direito</button>
+          <button class="pill" data-filter="educacao">Educação</button>
+        </div>
+      </div>
+      <a href="#" class="btn btn-ghost" style="flex-shrink:0">Ver todos os cursos →</a>
+    </div>
+
+    <div class="c-scroll-wrap">
+      <div class="c-grid">
+
+        <div class="c-card rv" data-course="eng-civil" data-category="engenharia">
+          <div class="c-thumb ct-1">
+            <span>⚡</span>
+            <span class="c-modal-tag">Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Engenharia Civil</div>
+            <div class="c-desc">Projete infraestruturas que moldam o futuro das cidades cariocas.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 10 semestres</div>
+                <div class="c-price">a partir de R$ 1.290/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d1" data-course="medicina" data-category="saude">
+          <div class="c-thumb ct-2">
+            <span>🩺</span>
+            <span class="c-modal-tag">Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Medicina</div>
+            <div class="c-desc">Formação humanizada com hospital escola e clínica integrada.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 12 semestres</div>
+                <div class="c-price">a partir de R$ 9.800/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d2" data-course="administracao" data-category="negocios">
+          <div class="c-thumb ct-3">
+            <span>📈</span>
+            <span class="c-modal-tag">EaD · Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Administração</div>
+            <div class="c-desc">Liderança, estratégia e gestão empresarial moderna e global.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 8 semestres</div>
+                <div class="c-price">a partir de R$ 590/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d1" data-course="direito" data-category="direito">
+          <div class="c-thumb ct-4">
+            <span>⚖️</span>
+            <span class="c-modal-tag">Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Direito</div>
+            <div class="c-desc">Formação jurídica completa com prática real desde o 4º período.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 10 semestres</div>
+                <div class="c-price">a partir de R$ 890/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d2" data-course="ciencia-computacao" data-category="tecnologia">
+          <div class="c-thumb ct-5">
+            <span>💻</span>
+            <span class="c-modal-tag">EaD · Semi</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Ciência da Computação</div>
+            <div class="c-desc">IA, sistemas e desenvolvimento de software de alto nível.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 8 semestres</div>
+                <div class="c-price">a partir de R$ 690/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d3" data-course="pedagogia" data-category="educacao">
+          <div class="c-thumb ct-6">
+            <span>📚</span>
+            <span class="c-modal-tag">EaD</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Pedagogia</div>
+            <div class="c-desc">Forme educadores de excelência — educar é transformar vidas.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 8 semestres</div>
+                <div class="c-price">a partir de R$ 390/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d2" data-course="enfermagem" data-category="saude">
+          <div class="c-thumb ct-7">
+            <span>💊</span>
+            <span class="c-modal-tag">Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Enfermagem</div>
+            <div class="c-desc">Cuidar com excelência técnica e sensibilidade humana.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 10 semestres</div>
+                <div class="c-price">a partir de R$ 1.090/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card rv d3" data-course="psicologia" data-category="saude">
+          <div class="c-thumb ct-8" style="background:linear-gradient(135deg,#1a101a 0%,#2e1a28 100%)">
+            <span>🧠</span>
+            <span class="c-modal-tag">Presencial</span>
+            <span class="c-mec">MEC 4</span>
+          </div>
+          <div class="c-body">
+            <div class="c-name">Psicologia</div>
+            <div class="c-desc">Compreenda o comportamento humano e transforme vidas.</div>
+            <div class="c-foot">
+              <div class="c-meta">
+                <div class="c-dur">⏱ 10 semestres</div>
+                <div class="c-price">a partir de R$ 1.190/mês</div>
+              </div>
+              <div class="c-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CAMPUS ══════════════════════════════════════ -->
+<section class="campus" id="campus">
+  <div class="campus-inner">
+    <span class="eyebrow rv">Nosso campus</span>
+    <h2 class="sec-h2 rv">Venha conhecer<br>sua nova casa</h2>
+    <p class="rv" style="font-size:15px;color:var(--t2);max-width:520px;line-height:1.7;margin-bottom:0;font-weight:300">Mais de 80 mil m² de área construída na Zona Oeste do Rio, com toda a infraestrutura que você precisa para aprender, crescer e se conectar.</p>
+
+    <div class="campus-grid">
+      <div class="campus-item ci-bg-1 rv">
+        <div class="campus-item-bg">🏛️</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">Hub de inovação</div>
+        <div class="campus-item-label">Laboratórios de IA</div>
+      </div>
+      <div class="campus-item ci-bg-2 rv d1">
+        <div class="campus-item-bg">🏥</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">Hospital escola</div>
+        <div class="campus-item-label">CLESAM</div>
+      </div>
+      <div class="campus-item ci-bg-3 rv d2">
+        <div class="campus-item-bg">📚</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">80 mil títulos</div>
+        <div class="campus-item-label">Biblioteca Central</div>
+      </div>
+      <div class="campus-item ci-bg-4 rv d1">
+        <div class="campus-item-bg">🎬</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">TV & Rádio profissional</div>
+        <div class="campus-item-label">Estúdios de Mídia</div>
+      </div>
+      <div class="campus-item ci-bg-5 rv d2">
+        <div class="campus-item-bg">⚽</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">Quadras e piscinas</div>
+        <div class="campus-item-label">Centro Esportivo</div>
+      </div>
+      <div class="campus-item ci-bg-6 rv d3">
+        <div class="campus-item-bg">☕</div>
+        <div class="campus-item-overlay"></div>
+        <div class="campus-item-sub">Área de convivência</div>
+        <div class="campus-item-label">Praça de Alimentação</div>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:32px;text-align:center">
+      <a href="https://maps.google.com/?q=UNISUAM+Barra+da+Tijuca" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size:14px;padding:12px 28px">
+        📍 Ver no mapa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ════════════════════════════════ -->
+<section class="testi" id="depoimentos">
+  <div class="testi-inner section-inner">
+    <span class="eyebrow rv">Depoimentos</span>
+    <h2 class="sec-h2 rv">Histórias que<br>nos movem</h2>
+    <div class="t-grid">
+      <div class="t-card rv">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"A UNISUAM foi fundamental na minha trajetória. Professores dedicados, laboratórios modernos e uma rede de relacionamento que abriu portas incríveis na construtora onde trabalho hoje."</p>
+        <div class="t-author">
+          <div class="t-av">A</div>
+          <div>
+            <div class="t-name">Amanda Ferreira</div>
+            <div class="t-role">Engenharia Civil, formada em 2022</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card rv d1">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"O CLESAM é excepcional. Desde o 3º período já atendo pacientes reais com supervisão. Essa experiência clínica precoce me colocou à frente nos processos de residência."</p>
+        <div class="t-author">
+          <div class="t-av">R</div>
+          <div>
+            <div class="t-name">Rafael Costa</div>
+            <div class="t-role">Medicina, formado em 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card rv d2">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Fiz toda a minha pós na UNISUAM. A flexibilidade do EaD com a qualidade do presencial foi o diferencial para a minha carreira como diretora de RH."</p>
+        <div class="t-author">
+          <div class="t-av">J</div>
+          <div>
+            <div class="t-name">Juliana Mendes</div>
+            <div class="t-role">MBA Gestão de Pessoas, 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card rv d1">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Entrei sem saber nada de programação. Saí desenvolvedor sênior. Os laboratórios de IA e a maratona de programação foram divisores de água na minha formação técnica."</p>
+        <div class="t-author">
+          <div class="t-av">L</div>
+          <div>
+            <div class="t-name">Lucas Andrade</div>
+            <div class="t-role">Ciência da Computação, formado em 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card rv d2">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"O Escritório Modelo de Direito mudou minha vida. Atendi casos reais desde o 5º período e quando me formei já tinha experiência equivalente a dois anos de prática."</p>
+        <div class="t-author">
+          <div class="t-av">M</div>
+          <div>
+            <div class="t-name">Mariana Souza</div>
+            <div class="t-role">Direito, formada em 2022</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card rv d3">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Mora a 5 minutos do BRT. A estrutura do campus é linda, os professores são incríveis e o custo-benefício é imbatível na Zona Oeste. Recomendo de olhos fechados."</p>
+        <div class="t-author">
+          <div class="t-av">G</div>
+          <div>
+            <div class="t-name">Gabriel Lima</div>
+            <div class="t-role">Administração, cursando 6º semestre</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BLOG PREVIEW ════════════════════════════════ -->
+<section class="blog-preview">
+  <div class="section-inner">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0">
+      <div>
+        <span class="eyebrow rv">Blog & Notícias</span>
+        <h2 class="sec-h2 rv" style="margin-bottom:0">Direto da<br>nossa comunidade</h2>
+      </div>
+      <a href="blog.html" class="btn btn-ghost rv" style="flex-shrink:0">Ver todos os posts →</a>
+    </div>
+    <div class="blog-grid">
+
+      <a href="post.php?slug=ia-laboratorio" class="blog-card rv">
+        <div class="bc-thumb ct-4">
+          <span>🤖</span>
+          <span class="bc-cat">Inovação</span>
+        </div>
+        <div class="bc-body">
+          <div class="bc-title">UNISUAM inaugura laboratório de IA com investimento de R$ 2 milhões</div>
+          <div class="bc-excerpt">Novo espaço conta com GPUs de última geração e parceria com startups de deep learning para pesquisa aplicada.</div>
+          <div class="bc-foot">
+            <div class="bc-av">R</div>
+            <div class="bc-date">15 maio 2025</div>
+            <div class="bc-likes">
+              <button class="bc-like-btn" data-post-id="1" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;color:var(--t3);font-size:11.5px">
+                ♡ <span class="like-count">142</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post.php?slug=vestibular-2025-2" class="blog-card rv d1">
+        <div class="bc-thumb" style="background:linear-gradient(135deg,#1a0f0f 0%,#2e1a1a 100%)">
+          <span>🎓</span>
+          <span class="bc-cat">Vestibular</span>
+        </div>
+        <div class="bc-body">
+          <div class="bc-title">Vestibular 2025.2 aberto: veja bolsas e como se inscrever</div>
+          <div class="bc-excerpt">Mais de 40 cursos com vagas disponíveis e descontos de até 70% para os primeiros inscritos.</div>
+          <div class="bc-foot">
+            <div class="bc-av">R</div>
+            <div class="bc-date">10 maio 2025</div>
+            <div class="bc-likes">
+              <button class="bc-like-btn" data-post-id="2" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;color:var(--t3);font-size:11.5px">
+                ♡ <span class="like-count">87</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post.php?slug=app-dengue" class="blog-card rv d2">
+        <div class="bc-thumb" style="background:linear-gradient(135deg,#0f1a0f 0%,#1a3020 100%)">
+          <span>💻</span>
+          <span class="bc-cat">Pesquisa</span>
+        </div>
+        <div class="bc-body">
+          <div class="bc-title">Pesquisadores da UNISUAM criam app de diagnóstico de dengue com 94% de precisão</div>
+          <div class="bc-excerpt">Usando machine learning, o app identifica padrões já nas primeiras 24 horas dos sintomas.</div>
+          <div class="bc-foot">
+            <div class="bc-av">R</div>
+            <div class="bc-date">3 maio 2025</div>
+            <div class="bc-likes">
+              <button class="bc-like-btn" data-post-id="5" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;color:var(--t3);font-size:11.5px">
+                ♡ <span class="like-count">203</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INGRESSO / CTA ══════════════════════════════ -->
+<div class="cta-wrap" id="ingresso">
+  <div class="cta-block rv">
+    <div class="cta-txt">
+      <h2>Comece sua jornada<br>ainda hoje</h2>
+      <p>Inscrição gratuita · Resultado em 24h · Bolsas disponíveis · FIES & ProUni</p>
+    </div>
+    <div class="cta-acts">
+      <button class="btn-wh" onclick="alert('Redirecionando para o portal de inscrição...')">
+        Fazer inscrição gratuita
+      </button>
+      <button class="btn-owh" onclick="window.open('https://api.whatsapp.com/send?phone=5521999999999','_blank')">
+        💬 Falar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div>
+        <img src="unisuam-white-no-background.png" alt="UNISUAM" class="ft-logo">
+        <p class="ft-desc">Centro Universitário Augusto Motta — Educação transformadora há mais de 35 anos na Zona Oeste do Rio de Janeiro. Formando profissionais que transformam o Brasil.</p>
+        <div class="ft-soc">
+          <a href="#" class="soc-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="soc-btn" aria-label="Instagram">ig</a>
+          <a href="#" class="soc-btn" aria-label="YouTube">yt</a>
+          <a href="#" class="soc-btn" aria-label="TikTok">tt</a>
+          <a href="#" class="soc-btn" aria-label="Facebook">fb</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Cursos</h4>
+        <a href="#cursos">Graduação Presencial</a>
+        <a href="#cursos">Graduação Digital</a>
+        <a href="#cursos">Semipresencial</a>
+        <a href="blog.html">Pós-Graduação</a>
+        <a href="blog.html">Mestrado & Doutorado</a>
+        <a href="blog.html">Extensão</a>
+      </div>
+      <div class="ft-col">
+        <h4>Ingresso</h4>
+        <a href="#ingresso">Vestibular</a>
+        <a href="#ingresso">ENEM</a>
+        <a href="#ingresso">Transferência</a>
+        <a href="#ingresso">Segunda Graduação</a>
+        <a href="#ingresso">Bolsas & Financiamentos</a>
+        <a href="#ingresso">FIES · PraValer</a>
+      </div>
+      <div class="ft-col">
+        <h4>Institucional</h4>
+        <a href="#por-que">Sobre a UNISUAM</a>
+        <a href="blog.html">Pesquisa & Inovação</a>
+        <a href="#campus">Campus Virtual</a>
+        <a href="blog.html">Trabalhe Conosco</a>
+        <a href="blog.html">Ouvidoria</a>
+        <a href="blog.html">Perguntas Frequentes</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">© 2025 UNISUAM — CNPJ 34.008.227/0001-03 · MEC credenciada</p>
+      <div class="ft-legal">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Regulamentos</a>
+        <a href="#">Acessibilidade</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ COURSE MODAL ════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Detalhes do curso">
+  <div class="modal-box" id="modal-box">
+    <!-- Filled dynamically by main.js -->
+  </div>
+</div>
+
+<script>
+/**
+ * UNISUAM — Scroll Engine
+ */
+class ScrollEngine {
+  constructor() {
+    this.raf = null;
+    this.ticking = false;
+    this.scrollY = window.scrollY;
+    this._initProgressBar();
+    this._initHero();
+    this._initParallax();
+    this._initCounters();
+    this._initReveal();
+    this._initStickyFeature();
+    this._bindScroll();
+  }
+  _initProgressBar() { this.bar = document.getElementById('scroll-bar'); }
+  _updateProgressBar() {
+    if (!this.bar) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? this.scrollY / max : 0;
+    this.bar.style.transform = `scaleX(${pct})`;
+  }
+  _updateNav() {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    nav.classList.toggle('scrolled', this.scrollY > 60);
+  }
+  _initHero() {
+    const h1 = document.querySelector('.hero-h1[data-split]');
+    if (!h1) return;
+    const raw = h1.innerHTML;
+    const parts = raw.split(/(<em>.*?<\/em>|\s+)/g).filter(p => p && !/^\s+$/.test(p));
+    h1.innerHTML = parts.map(part => {
+      if (part.startsWith('<em>')) return `<span class="word"><em><span>${part.replace(/<\/?em>/g,'')}</span></em></span>`;
+      return `<span class="word"><span>${part}</span></span>`;
+    }).join(' ');
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        h1.classList.add('revealed');
+        h1.querySelectorAll('.word > span').forEach((w, i) => { w.style.transitionDelay = `${0.3 + i * 0.08}s`; });
+      }, 100);
+    });
+  }
+  _initParallax() { this.parallaxEls = document.querySelectorAll('[data-parallax]'); }
+  _updateParallax() {
+    if (!this.parallaxEls.length) return;
+    this.parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.3;
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      el.style.transform = `translateY(${center * speed}px)`;
+    });
+  }
+  _initCounters() { this.counters = document.querySelectorAll('[data-count]'); }
+  _updateCounters() {
+    if (!this.counters.length) return;
+    this.counters.forEach(el => {
+      if (el._counted) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top > window.innerHeight * 0.88) return;
+      el._counted = true;
+      const end = parseFloat(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const decimals = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
+      const duration = 2400;
+      const startTime = performance.now();
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        el.textContent = prefix + (easeOutCubic(progress) * end).toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  _initReveal() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  }
+  _initStickyFeature() {
+    this.fsTrack = document.querySelector('.fs-track');
+    this.fsItems = document.querySelectorAll('.fs-item');
+    this.fsVisuals = document.querySelectorAll('.fs-visual');
+    this.fsDots = document.querySelectorAll('.fs-dot');
+    this._currentStep = -1;
+    this.fsDots.forEach((dot, i) => dot.addEventListener('click', () => this._goToStep(i)));
+    if (window.innerWidth < 768) this._initMobileFeatureSwipe();
+  }
+  _initMobileFeatureSwipe() {
+    const sticky = document.querySelector('.fs-sticky');
+    if (!sticky) return;
+    let startX = 0;
+    sticky.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    sticky.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        const n = this.fsItems.length;
+        const next = ((this._currentStep === -1 ? 0 : this._currentStep) + (dx < 0 ? 1 : -1) + n) % n;
+        this._goToStep(next);
+      }
+    }, { passive: true });
+    this._goToStep(0);
+  }
+  _goToStep(step) {
+    if (step === this._currentStep) return;
+    this._currentStep = step;
+    this.fsItems.forEach((item, i) => item.classList.toggle('active', i === step));
+    this.fsVisuals.forEach((v, i) => v.classList.toggle('active', i === step));
+    this.fsDots.forEach((d, i) => d.classList.toggle('on', i === step));
+  }
+  _updateStickyFeature() {
+    if (!this.fsTrack || window.innerWidth < 768) return;
+    const rect = this.fsTrack.getBoundingClientRect();
+    const trackH = this.fsTrack.offsetHeight - window.innerHeight;
+    if (trackH <= 0) return;
+    const progress = Math.max(0, Math.min(0.9999, -rect.top / trackH));
+    const n = this.fsItems.length;
+    const step = Math.min(Math.floor(progress * n), n - 1);
+    if (step !== this._currentStep) this._goToStep(step);
+  }
+  _bindScroll() {
+    window.addEventListener('scroll', () => {
+      this.scrollY = window.scrollY;
+      if (!this.ticking) {
+        requestAnimationFrame(() => { this._tick(); this.ticking = false; });
+        this.ticking = true;
+      }
+    }, { passive: true });
+    this._tick();
+  }
+  _tick() {
+    this._updateProgressBar();
+    this._updateNav();
+    this._updateParallax();
+    this._updateCounters();
+    this._updateStickyFeature();
+  }
+}
+function initCardTilt() {
+  document.querySelectorAll('.t-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = (e.clientX - rect.left) / rect.width - 0.5;
+      const cy = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translateY(-4px) rotateX(${-cy * 8}deg) rotateY(${cx * 8}deg)`;
+      card.style.transition = 'none';
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; card.style.transition = ''; });
+  });
+}
+function initSectionColorShift() {
+  const sections = [
+    { el: document.querySelector('.hero') },
+    { el: document.querySelector('.metrics') },
+    { el: document.querySelector('.features-wrap') },
+    { el: document.querySelector('.critique') },
+    { el: document.querySelector('.courses') },
+    { el: document.querySelector('.testi') },
+    { el: document.querySelector('.blog-preview') },
+  ].filter(s => s.el);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.dataset.visible = '1';
+      else delete e.target.dataset.visible;
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => io.observe(s.el));
+}
+function initCourseScrollHint() {
+  const wrap = document.querySelector('.c-scroll-wrap');
+  if (!wrap) return;
+  const hint = document.querySelector('.scroll-hint-arrow');
+  if (!hint) return;
+  wrap.addEventListener('scroll', () => {
+    hint.style.opacity = (wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 10) ? '0' : '1';
+  }, { passive: true });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  window._scrollEngine = new ScrollEngine();
+  initCardTilt();
+  initSectionColorShift();
+  initCourseScrollHint();
+});
+</script>
+<script>
+/**
+ * UNISUAM — Main Interactions
+ */
+const html = document.documentElement;
+function applyTheme(t) { html.dataset.theme = t; localStorage.setItem('uni_theme', t); }
+html.dataset.theme = localStorage.getItem('uni_theme') || 'light';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tp = document.getElementById('tp');
+  if (tp) tp.addEventListener('click', () => applyTheme(html.dataset.theme === 'light' ? 'dark' : 'light'));
+
+  const ham = document.getElementById('ham');
+  const drawer = document.getElementById('drawer');
+  if (ham && drawer) {
+    ham.addEventListener('click', () => {
+      const open = ham.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      ham.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = '';
+    }));
+  }
+
+  if (window.innerWidth >= 960) document.querySelectorAll('.nb-aluno').forEach(el => el.style.display = 'inline-flex');
+
+  document.querySelectorAll('.pills').forEach(pillGroup => {
+    pillGroup.addEventListener('click', e => {
+      const pill = e.target.closest('.pill');
+      if (!pill) return;
+      pillGroup.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+      pill.classList.add('on');
+      const filter = pill.dataset.filter || 'all';
+      const container = pillGroup.closest('[data-pill-container]') || document.querySelector('.c-grid');
+      if (!container) return;
+      container.querySelectorAll('[data-category]').forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+        if (match) requestAnimationFrame(() => card.classList.add('on'));
+      });
+    });
+  });
+
+  initModals();
+  initBlogLikes();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const navH = document.querySelector('.nav')?.offsetHeight || 72;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - 20, behavior: 'smooth' });
+      }
+    });
+  });
+});
+
+const COURSES = [
+  {
+    id:'eng-civil',name:'Engenharia Civil',emoji:'⚡',cat:'engenharia',modal:'Presencial',duration:'10 semestres',price:'R$ 1.290',mec:'MEC 4',
+    desc:'Projete infraestruturas que moldam o futuro das cidades.',
+    desc_long:'Um dos cursos mais tradicionais da UNISUAM, a Engenharia Civil forma profissionais completos para atuar no planejamento, projeto e execução de obras de infraestrutura urbana, habitacional e industrial, com forte ênfase em sustentabilidade e tecnologias BIM.',
+    highlights:['Laboratório de Materiais e Solos','Parceria com construtoras do Rio','Núcleo de prática em BIM/Revit','Estágio obrigatório a partir do 5º semestre'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Cálculo Diferencial','Física Clássica I','Química Geral','Desenho Técnico','Comunicação Científica']},
+      {sem:'2º Semestre',subjects:['Cálculo Integral','Física Clássica II','Topografia','Mecânica dos Sólidos','Estatística Aplicada']},
+      {sem:'3º Semestre',subjects:['Mecânica dos Solos I','Resistência dos Materiais','Hidrologia','Materiais de Construção','AutoCAD']},
+      {sem:'4º Semestre',subjects:['Mecânica dos Solos II','Estruturas de Concreto I','Instalações Hidráulicas','Geotecnia','Gestão de Projetos']},
+      {sem:'5º Semestre',subjects:['Estruturas de Concreto II','Saneamento Básico','Planejamento de Obras','Orçamento e Controle','Estágio I']},
+      {sem:'6º Semestre',subjects:['Estruturas de Aço','Estradas e Pavimentação','Instalações Elétricas','BIM/Revit','Estágio II']},
+      {sem:'7º Semestre',subjects:['Pontes e Viadutos','Sustentabilidade em Obras','Gestão Ambiental','TCC I','Estágio III']},
+      {sem:'8º Semestre',subjects:['Legislação e Normas ABNT','Empreendedorismo','Construção Industrializada','TCC II','Atividades Complementares']}
+    ],
+    careers:['Projetista Estrutural','Gestor de Obras','Consultor Ambiental','Perito Judicial','BIM Manager','Servidor Público (CREA)'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa UNISUAM',icon:'🧡',desc:'Desconto de até 50% por desempenho no vestibular',tag:'Mérito'},
+      {name:'PraValer',icon:'💳',desc:'Parcelamento sem juros pelo app',tag:'Sem juros'}
+    ]
+  },
+  {
+    id:'medicina',name:'Medicina',emoji:'🩺',cat:'saude',modal:'Presencial',duration:'12 semestres',price:'R$ 9.800',mec:'MEC 4',
+    desc:'Formação humanizada com estrutura clínica completa e hospital escola.',
+    desc_long:'O curso de Medicina da UNISUAM destaca-se pela formação humanizada e pela estrutura do CLESAM — Centro de Saúde, seu hospital-escola integrado. Os alunos têm contato com pacientes reais desde o 3º período, com supervisão de professores doutores e especialistas renomados.',
+    highlights:['Hospital escola CLESAM integrado','Laboratório de anatomia com 40 mesas','Simulação clínica com manequins de alta fidelidade','Intercâmbio com hospitais parceiros'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Anatomia Humana I','Bioquímica I','Biofísica','Histologia','Medicina e Sociedade']},
+      {sem:'2º Semestre',subjects:['Anatomia Humana II','Bioquímica II','Fisiologia I','Imunologia','Saúde Coletiva I']},
+      {sem:'3º Semestre',subjects:['Fisiologia II','Patologia Geral','Microbiologia','Parasitologia','Semiologia I']},
+      {sem:'4º Semestre',subjects:['Patologia Especial','Farmacologia I','Semiologia II','Saúde Mental','Urgência e Emergência']},
+      {sem:'5º Semestre',subjects:['Farmacologia II','Clínica Médica I','Pediatria I','Cirurgia Geral I','Propedêutica']},
+      {sem:'6º Semestre',subjects:['Clínica Médica II','Pediatria II','Ginecologia e Obstetrícia I','Cirurgia Geral II','Internato I']},
+      {sem:'7º Semestre',subjects:['Medicina de Família','Ginecologia II','Psiquiatria Clínica','Medicina Legal','Internato II']},
+      {sem:'8º Semestre',subjects:['Internato Clínica Médica','Internato Cirurgia','Internato Pediatria','Internato G.O.','Saúde Coletiva II']}
+    ],
+    careers:['Clínico Geral','Especialista (via Residência)','Pesquisador Médico','Médico de Família','Médico do Trabalho','Gestor em Saúde'],
+    scholarships:[
+      {name:'FIES Medicina',icon:'🏛️',desc:'Financiamento especial para cursos de Medicina',tag:'Disponível'},
+      {name:'Bolsa Pesquisa',icon:'🔬',desc:'Para alunos vinculados a grupos de pesquisa',tag:'Desempenho'},
+      {name:'Desconto CREA/CRM',icon:'👨‍⚕️',desc:'Benefício para filhos de associados',tag:'20% off'},
+      {name:'PraValer',icon:'💳',desc:'Parcelamento sem juros pelo aplicativo',tag:'Sem juros'}
+    ]
+  },
+  {
+    id:'administracao',name:'Administração',emoji:'📈',cat:'negocios',modal:'EaD · Presencial',duration:'8 semestres',price:'R$ 590',mec:'MEC 4',
+    desc:'Liderança, estratégia e gestão empresarial moderna.',
+    desc_long:'O curso de Administração da UNISUAM prepara gestores com visão estratégica e competência técnica para liderar organizações em mercados cada vez mais dinâmicos. Disponível presencialmente e em EaD, com módulos internacionais opcionais e parceria com empresas da região metropolitana do Rio.',
+    highlights:['Simulador de negócios em tempo real','Parceria com Sebrae e Endeavor','Módulo de empreendedorismo e startups','Disponível em EaD com tutoria ao vivo'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Introdução à Administração','Matemática Aplicada','Contabilidade Geral','Teoria Econômica','Comunicação Empresarial']},
+      {sem:'2º Semestre',subjects:['Gestão de Pessoas','Estatística Empresarial','Marketing I','Direito Empresarial','Comportamento Organizacional']},
+      {sem:'3º Semestre',subjects:['Finanças Corporativas I','Marketing II','Gestão de Processos','Logística e Supply Chain','Pesquisa de Mercado']},
+      {sem:'4º Semestre',subjects:['Finanças Corporativas II','Gestão de Projetos','Estratégia Empresarial','Análise de Investimentos','Gestão da Qualidade']},
+      {sem:'5º Semestre',subjects:['Planejamento Estratégico','Gestão de Operações','Negócios Internacionais','Liderança e Inovação','Estágio I']},
+      {sem:'6º Semestre',subjects:['Empreendedorismo','Gestão Ambiental','Business Intelligence','Ética nos Negócios','TCC I / Estágio II']}
+    ],
+    careers:['Gerente de Operações','Analista Financeiro','Consultor de Negócios','Empreendedor','Gestor de Marketing','Diretor Executivo'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa EaD',icon:'💻',desc:'Desconto especial na modalidade digital',tag:'30% off'},
+      {name:'Desconto Funcionário',icon:'👔',desc:'Para colaboradores de empresas parceiras',tag:'25% off'}
+    ]
+  },
+  {
+    id:'direito',name:'Direito',emoji:'⚖️',cat:'direito',modal:'Presencial',duration:'10 semestres',price:'R$ 890',mec:'MEC 4',
+    desc:'Formação jurídica completa com núcleo de prática profissional.',
+    desc_long:'O Direito na UNISUAM forma advogados preparados para os desafios do século XXI, com sólida base teórica e intensa prática profissional através do Escritório Modelo, onde estudantes atendem casos reais sob supervisão de professores-advogados.',
+    highlights:['Escritório Modelo com casos reais','Simulação de júri e audiências','Parceria com Tribunal de Justiça do RJ','Preparação intensiva para OAB'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Teoria Geral do Direito','Introdução à Ciência Política','Sociologia Jurídica','Metodologia Científica','Filosofia do Direito']},
+      {sem:'2º Semestre',subjects:['Direito Civil I (Pessoas)','Direito Constitucional I','Direito Penal I','Direito Romano','Economia para Juristas']},
+      {sem:'3º Semestre',subjects:['Direito Civil II (Obrigações)','Direito Constitucional II','Direito Penal II','Direito Administrativo I','Processo Civil I']},
+      {sem:'4º Semestre',subjects:['Direito Civil III (Contratos)','Direito Tributário I','Direito Penal III','Processo Civil II','Direito do Trabalho I']},
+      {sem:'5º Semestre',subjects:['Direito Civil IV (Família)','Direito Tributário II','Processo Penal I','Direito do Trabalho II','Processo Trabalhista']},
+      {sem:'6º Semestre',subjects:['Direito Empresarial','Direito Internacional','Processo Penal II','Direito do Consumidor','Prática Jurídica I']},
+      {sem:'7º Semestre',subjects:['Direito Ambiental','Direito Previdenciário','Arbitragem e Mediação','Prática Jurídica II','TCC I']},
+      {sem:'8º Semestre',subjects:['Direito Digital','Compliance e LGPD','Prática Jurídica III','TCC II','Atividades Complementares']}
+    ],
+    careers:['Advogado(a)','Juiz(a) / Promotor(a)','Delegado(a)','Consultor Jurídico','Defensor(a) Público(a)','Analista Jurídico'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa OAB',icon:'⚖️',desc:'Desconto para aprovados com nota acima de 8 no ENEM',tag:'40% off'},
+      {name:'PraValer',icon:'💳',desc:'Parcelamento facilitado pelo app',tag:'Sem juros'}
+    ]
+  },
+  {
+    id:'ciencia-computacao',name:'Ciência da Computação',emoji:'💻',cat:'tecnologia',modal:'EaD · Semipresencial',duration:'8 semestres',price:'R$ 690',mec:'MEC 4',
+    desc:'IA, sistemas e desenvolvimento de software de alto nível.',
+    desc_long:'O curso de Ciência da Computação da UNISUAM é referência no Rio em formação tecnológica. Com laboratórios de IA, desenvolvimento de games, segurança da informação e cloud computing, os alunos constroem portfólios reais e ingressam no mercado ainda durante a graduação.',
+    highlights:['Laboratório de IA e Machine Learning','Maratona de Programação (ICPC)','Parceria com startups da Zona Oeste','Projetos open source no GitHub'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Algoritmos e Lógica de Programação','Matemática Discreta','Fundamentos de TI','Arquitetura de Computadores','Inglês Técnico']},
+      {sem:'2º Semestre',subjects:['Estruturas de Dados','Programação Orientada a Objetos','Cálculo Aplicado','Sistemas Operacionais','Banco de Dados I']},
+      {sem:'3º Semestre',subjects:['Algoritmos Avançados','Desenvolvimento Web','Banco de Dados II','Redes de Computadores','Probabilidade e Estatística']},
+      {sem:'4º Semestre',subjects:['Engenharia de Software','Desenvolvimento Mobile','Inteligência Artificial I','Segurança da Informação','Arquitetura de Software']},
+      {sem:'5º Semestre',subjects:['Machine Learning','Cloud Computing (AWS/Azure)','DevOps e CI/CD','Computação Gráfica','Projeto Integrador I']},
+      {sem:'6º Semestre',subjects:['Deep Learning','Blockchain e Web3','Gestão de Projetos Ágeis','UX/UI Design','TCC I / Estágio']}
+    ],
+    careers:['Desenvolvedor Full-Stack','Engenheiro de ML/IA','Arquiteto de Software','DevOps Engineer','Cientista de Dados','CTO / Tech Lead'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa Tech',icon:'💻',desc:'Para alunos com nota > 750 no ENEM',tag:'50% off'},
+      {name:'EaD Especial',icon:'📱',desc:'Desconto exclusivo na modalidade digital',tag:'35% off'}
+    ]
+  },
+  {
+    id:'pedagogia',name:'Pedagogia',emoji:'📚',cat:'educacao',modal:'EaD',duration:'8 semestres',price:'R$ 390',mec:'MEC 4',
+    desc:'Forme educadores de excelência para transformar vidas.',
+    desc_long:'A Pedagogia da UNISUAM forma educadores críticos, criativos e humanizados, preparados para atuar na educação básica, gestão escolar e formação corporativa. O curso tem ênfase em tecnologias educacionais e metodologias ativas, com forte conexão com escolas da rede pública e privada.',
+    highlights:['Convênio com escolas municipais e estaduais','Laboratório de tecnologias educacionais','Estágio supervisionado em escolas reais','Formação em metodologias ativas'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Filosofia da Educação','História da Educação','Psicologia do Desenvolvimento','Fundamentos da Pedagogia','Comunicação e Linguagem']},
+      {sem:'2º Semestre',subjects:['Didática Geral','Psicologia da Aprendizagem','Fundamentos de Alfabetização','Sociologia da Educação','Políticas Educacionais']},
+      {sem:'3º Semestre',subjects:['Metodologia da Alfabetização','Educação Inclusiva','Tecnologias na Educação','Currículo e Avaliação','Literatura Infantil']},
+      {sem:'4º Semestre',subjects:['Educação Infantil','Arte-Educação','Gestão Escolar','Pesquisa em Educação','Estágio I (Infantil)']},
+      {sem:'5º Semestre',subjects:['Ensino de Ciências','Matemática nos Anos Iniciais','Educação de Jovens e Adultos','Neurociência e Aprendizagem','Estágio II (Fundamental)']},
+      {sem:'6º Semestre',subjects:['Educação Corporativa','Gestão de Projetos Pedagógicos','Metodologias Ativas','TCC I','Estágio III (Gestão)']}
+    ],
+    careers:['Professor(a) de Educação Básica','Coordenador(a) Pedagógico(a)','Gestor(a) Escolar','Analista de Treinamento','Especialista em EaD','Consultor(a) Educacional'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial — muito disputado em Pedagogia',tag:'Até 100%'},
+      {name:'Bolsa Professor',icon:'📚',desc:'Para professores da rede pública em exercício',tag:'40% off'},
+      {name:'EaD Acessível',icon:'📱',desc:'Plano especial para o curso na modalidade digital',tag:'A partir R$ 390'}
+    ]
+  },
+  {
+    id:'enfermagem',name:'Enfermagem',emoji:'💊',cat:'saude',modal:'Presencial',duration:'10 semestres',price:'R$ 1.090',mec:'MEC 4',
+    desc:'Cuidar com excelência técnica e sensibilidade humana.',
+    desc_long:'O curso de Enfermagem da UNISUAM forma profissionais altamente qualificados para atuar em hospitais, clínicas, UBSs e na saúde domiciliar. Com laboratório de enfermagem completo e estágios no CLESAM e hospitais parceiros, os formandos têm altíssima taxa de empregabilidade.',
+    highlights:['Laboratório de técnicas de enfermagem','Estágio no hospital escola CLESAM','Parceria com hospitais da Zona Oeste','Preparação para COFEN e especializações'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['Anatomia e Fisiologia I','Bioquímica Aplicada','Microbiologia e Parasitologia','Fundamentos de Enfermagem','Saúde Coletiva']},
+      {sem:'2º Semestre',subjects:['Anatomia e Fisiologia II','Farmacologia I','Semiologia de Enfermagem','Psicologia em Saúde','Biossegurança']},
+      {sem:'3º Semestre',subjects:['Farmacologia II','Enfermagem Médico-Cirúrgica I','Saúde da Mulher','Nutrição Clínica','Primeiros Socorros']},
+      {sem:'4º Semestre',subjects:['Enfermagem Médico-Cirúrgica II','Enfermagem Pediátrica','UTI e Emergência','Saúde Mental','Estágio I']},
+      {sem:'5º Semestre',subjects:['Enfermagem em Saúde Pública','Gerenciamento em Enfermagem','Oncologia','Estágio II','TCC I']},
+      {sem:'6º Semestre',subjects:['Enfermagem Gerontológica','Auditoria em Saúde','Ética Profissional','Estágio III','TCC II']}
+    ],
+    careers:['Enfermeiro(a) Hospitalar','Enfermeiro(a) de UTI','Gestor(a) de Saúde','Enfermeiro(a) da Família','Professor(a) de Enfermagem','Consultor(a) em Saúde'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa SUS',icon:'💊',desc:'Para profissionais da rede pública de saúde',tag:'30% off'},
+      {name:'PraValer',icon:'💳',desc:'Parcelamento facilitado',tag:'Sem juros'}
+    ]
+  },
+  {
+    id:'psicologia',name:'Psicologia',emoji:'🧠',cat:'saude',modal:'Presencial',duration:'10 semestres',price:'R$ 1.190',mec:'MEC 4',
+    desc:'Compreenda o comportamento humano e transforme vidas.',
+    desc_long:'A Psicologia da UNISUAM oferece formação integrada nas principais abordagens clínicas e organizacionais, com ênfase em neuropsicologia, psicologia positiva e saúde mental. O clínica escola oferece atendimentos reais supervisionados a partir do 7º período.',
+    highlights:['Clínica Escola com atendimentos reais','Laboratório de neuropsicologia','Formação em múltiplas abordagens clínicas','Parceria com CAPS e hospitais psiquiátricos'],
+    curriculum:[
+      {sem:'1º Semestre',subjects:['História da Psicologia','Neurociência','Estatística para Psicólogos','Filosofia e Ciência','Psicologia do Desenvolvimento I']},
+      {sem:'2º Semestre',subjects:['Teorias da Personalidade','Psicofisiologia','Psicologia Social','Desenvolvimento II','Metodologia de Pesquisa']},
+      {sem:'3º Semestre',subjects:['Psicanálise Freudiana','Behaviorismo e TCC','Psicopatologia I','Avaliação Psicológica I','Psicologia Organizacional I']},
+      {sem:'4º Semestre',subjects:['Psicologia Analítica (Jung)','Psicopatologia II','Avaliação Psicológica II','Psicologia Escolar','Psicologia Org. II']},
+      {sem:'5º Semestre',subjects:['Abordagem Humanista','Psicologia da Saúde','Técnicas Psicoterápicas I','Neuropsicologia Clínica','Estágio I']},
+      {sem:'6º Semestre',subjects:['Psicologia Forense','Saúde Mental Comunitária','Técnicas II','Supervisão Clínica','TCC I / Estágio II']}
+    ],
+    careers:['Psicólogo(a) Clínico(a)','Psicólogo(a) Organizacional','Neuropsicólogo(a)','Psicólogo(a) Escolar','Psicólogo(a) Forense','Pesquisador(a)'],
+    scholarships:[
+      {name:'FIES',icon:'🏛️',desc:'Financiamento estudantil do Governo Federal',tag:'Disponível'},
+      {name:'ProUni',icon:'🎓',desc:'Bolsa integral ou parcial para renda baixa',tag:'Até 100%'},
+      {name:'Bolsa CRP',icon:'🧠',desc:'Parceria com Conselho Regional de Psicologia',tag:'20% off'},
+      {name:'PraValer',icon:'💳',desc:'Parcelamento sem juros',tag:'Sem juros'}
+    ]
+  }
+];
+
+function initModals() {
+  const overlay = document.getElementById('modal-overlay');
+  const box = document.getElementById('modal-box');
+  if (!overlay || !box) return;
+  document.querySelectorAll('.c-card[data-course]').forEach(card => {
+    card.addEventListener('click', () => {
+      const course = COURSES.find(c => c.id === card.dataset.course);
+      if (course) openModal(course);
+    });
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
+    card.setAttribute('tabindex','0'); card.setAttribute('role','button');
+  });
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.getElementById('modal-close-btn')?.addEventListener('click', closeModal);
+}
+
+function openModal(course) {
+  const overlay = document.getElementById('modal-overlay');
+  const box = document.getElementById('modal-box');
+  if (!overlay || !box) return;
+  const thumbClass = {'eng-civil':'ct-1',medicina:'ct-2',administracao:'ct-3',direito:'ct-4','ciencia-computacao':'ct-5',pedagogia:'ct-6',enfermagem:'ct-2',psicologia:'ct-7'}[course.id]||'ct-1';
+  const curriculumHTML = course.curriculum.map(s=>`<div class="sem-block"><div class="sem-label">${s.sem}</div><ul>${s.subjects.map(sub=>`<li>${sub}</li>`).join('')}</ul></div>`).join('');
+  const careersHTML = course.careers.map(c=>`<div class="career-tag">${c}</div>`).join('');
+  const scholsHTML = course.scholarships.map(s=>`<div class="schol-item"><div class="schol-icon">${s.icon}</div><div><div class="schol-name">${s.name}</div><div class="schol-desc">${s.desc}</div></div><span class="schol-badge">${s.tag}</span></div>`).join('');
+  const highlightsHTML = course.highlights.map(h=>`<li class="ci"><span class="ci-icon good">✓</span>${h}</li>`).join('');
+  box.innerHTML = `
+    <div style="position:relative">
+      <div class="modal-hero ${thumbClass}">
+        <div class="hvc-mono"></div>
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,77,0,.25) 0%,transparent 65%)"></div>
+        <div class="modal-hero-emoji">${course.emoji}</div>
+        <div class="modal-hero-badge">${course.modal}</div>
+        <button class="modal-close" id="modal-close-btn" aria-label="Fechar">✕</button>
+      </div>
+    </div>
+    <div class="modal-handle"></div>
+    <div class="modal-body">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 class="modal-title">${course.name}</h2>
+        <div style="font-family:var(--fd);font-size:22px;font-weight:700;color:var(--o);white-space:nowrap">${course.price}<span style="font-family:var(--fb);font-size:11px;color:var(--t3);font-weight:400">/mês</span></div>
+      </div>
+      <div class="modal-meta"><span>⏱ ${course.duration}</span><span>📍 ${course.modal}</span><span>🏅 ${course.mec}</span></div>
+      <p style="font-size:14.5px;color:var(--t2);line-height:1.75;margin-bottom:28px;font-weight:300">${course.desc_long}</p>
+      <div class="modal-tabs">
+        <div class="mtab on" data-tab="grade">Grade Curricular</div>
+        <div class="mtab" data-tab="carreiras">Mercado de Trabalho</div>
+        <div class="mtab" data-tab="bolsas">Bolsas & Financiamento</div>
+        <div class="mtab" data-tab="destaques">Destaques</div>
+      </div>
+      <div class="modal-panel on" data-panel="grade"><div class="curriculum-grid">${curriculumHTML}</div></div>
+      <div class="modal-panel" data-panel="carreiras">
+        <h3 style="font-family:var(--fd);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:16px">Onde nossos formandos atuam</h3>
+        <div class="career-tags">${careersHTML}</div>
+        <div style="background:var(--og);border-radius:14px;padding:20px 22px;border:1px solid rgba(255,77,0,.15);margin-top:24px">
+          <div style="font-family:var(--fd);font-size:15px;font-weight:700;color:var(--o);margin-bottom:6px">📊 Empregabilidade</div>
+          <div style="font-size:14px;color:var(--t2);line-height:1.65">Nossos formandos em ${course.name} têm <strong style="color:var(--t1)">87% de aproveitamento no mercado</strong> em até 6 meses após a colação de grau, segundo pesquisa de egressos 2024.</div>
+        </div>
+      </div>
+      <div class="modal-panel" data-panel="bolsas">
+        <div class="scholarship-list">${scholsHTML}</div>
+        <div style="margin-top:20px;padding:18px;background:var(--bg2);border-radius:12px;border:1px solid var(--brd)">
+          <div style="font-size:13px;color:var(--t3);line-height:1.65">💡 Não acumulável com outros descontos. Sujeito a disponibilidade de vagas. Entre em contato com a central de atendimento para verificar elegibilidade.</div>
+        </div>
+      </div>
+      <div class="modal-panel" data-panel="destaques">
+        <h3 style="font-family:var(--fd);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:20px">Por que escolher este curso na UNISUAM?</h3>
+        <ul class="crit-items" style="list-style:none;padding:0">${highlightsHTML}</ul>
+      </div>
+      <div class="modal-cta">
+        <a href="blog.html" class="btn btn-fill" style="font-size:14px;padding:14px 30px">Quero me inscrever agora</a>
+        <button class="btn btn-ghost" style="font-size:14px;padding:14px 28px" onclick="window.open('https://api.whatsapp.com/send?phone=5521999999999&text=Ol%C3%A1%2C+tenho+interesse+no+curso+de+${encodeURIComponent(course.name)}','_blank')">💬 Falar no WhatsApp</button>
+      </div>
+    </div>
+  `;
+  box.querySelectorAll('.mtab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      box.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));
+      box.querySelectorAll('.modal-panel').forEach(p=>p.classList.remove('on'));
+      tab.classList.add('on');
+      box.querySelector(`[data-panel="${tab.dataset.tab}"]`)?.classList.add('on');
+    });
+  });
+  box.querySelector('#modal-close-btn')?.addEventListener('click', closeModal);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  box.scrollTop = 0;
+}
+
+function closeModal() {
+  const overlay = document.getElementById('modal-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function initBlogLikes() {
+  document.querySelectorAll('.bc-like-btn').forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      const postId = btn.dataset.postId;
+      try {
+        const res = await fetch(`api/likes.php?post_id=${postId}`, { method: 'POST' });
+        const data = await res.json();
+        btn.querySelector('.like-count').textContent = data.count;
+        btn.classList.toggle('liked', data.liked);
+        if (data.liked) { btn.style.transform = 'scale(1.35)'; setTimeout(() => { btn.style.transform = ''; }, 300); }
+      } catch {
+        const count = btn.querySelector('.like-count');
+        const c = parseInt(count.textContent) || 0;
+        const wasLiked = btn.classList.toggle('liked');
+        count.textContent = wasLiked ? c + 1 : c - 1;
+      }
+    });
+  });
+}
+</script>
+</body>
+</html>
